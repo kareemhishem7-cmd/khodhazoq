@@ -1,178 +1,152 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" class="scroll-smooth">
 <head>
+    <meta name="google-site-verification" content="w-bWN4NQHG4wjMA_PC7DckC1jsioVTbRaAVfxQmvUDI" />
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>تطبيق خدها زق | دليل ورش وصنايعية العجل</title>
-    <meta name="description" content="حمل تطبيق خدها زق مجاناً - أسرع دليل لورش وصنايعية تصليح الدراجات والعجل في جميع المناطق لخدمة الطيارين والدليفري.">
-    <meta name="keywords" content="خدها زق, تطبيق خدها زق, khodhazoq, دليل ورش العجل, تصليح عجل, عجلاتي, طيارين دليفري, تحميل تطبيق خدها زق APK">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="تطبيق خدها زق | دليل ورش وصنايعية العجل">
-    <meta property="og:description" content="أقرب ورشة عجلاتي وصنايعي تصليح دراجات في جيبك وقت العطلة. حمل التطبيق مجاناً الآن!">
-    <meta property="og:type" content="website">
-    <meta name="theme-color" content="#0F172A">
-    <link id="site-favicon" rel="icon" type="image/svg+xml" href="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق خدها زق | دليلك لأقرب ورشة وصنايعي عجل</title>
+    <meta name="description" content="حمل تطبيق خدها زق (Khodhazoq) الآن مجاناً. دليلك الشامل للوصول لأقرب ورشة تصليح عجل وصنايعي في أسرع وقت، مع إمكانية معرفة مواعيد العمل والموقع على الخريطة.">
+    <meta name="keywords" content="خدها زق, تطبيق خدها زق, برنامج خدها زق, khodhazoq, تصليح عجل, ورش عجل, عجلاتي, دليفري, طلبات">
+    
+    <!-- أيقونة التاب المدمجة -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23FF5A00'/%3E%3Ccircle cx='30' cy='65' r='14' stroke='white' stroke-width='6' fill='none'/%3E%3Ccircle cx='70' cy='65' r='14' stroke='white' stroke-width='6' fill='none'/%3E%3Cpath d='M30 65 L48 40 L68 40 L70 65 M48 40 L42 65' stroke='white' stroke-width='6' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
 
-    <!-- خط Cairo من جوجل لمظهر عربي عصري وواضح جداً ع الموبايل -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-
-    <!-- أيقونات FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- مكتبة Tailwind CSS للتصميم المتجاوب -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Cairo', sans-serif; }
+        .hero-gradient { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
+        .orange-glow { box-shadow: 0 10px 30px -5px rgba(255, 90, 0, 0.4); }
+    </style>
+</head>
+<body class="bg-slate-950 text-white antialiased selection:bg-orange-500 selection:text-white">
 
-    <!-- إعدادات الألوان والخطوط في Tailwind -->
+    <!-- إشعار منبثق (Toast) يظهر لو الملف لسه مرفعش -->
+    <div id="toastMsg" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 hidden bg-slate-900 border-2 border-orange-500 text-white px-6 py-4 rounded-2xl shadow-2xl max-w-sm w-[90%] text-center transition-all duration-300">
+        <div class="text-orange-500 font-bold text-lg mb-1">🚀 قريباً جداً!</div>
+        <p class="text-sm text-slate-300">جاري تجهيز النسخة النهائية من التطبيق للتحميل المباشر.. لو عندك ورشة أو تعرف صنايعي، سجله من زرار الفورم بالأسفل!</p>
+        <button onclick="document.getElementById('toastMsg').classList.add('hidden')" class="mt-3 bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold px-4 py-1.5 rounded-lg">حسناً</button>
+    </div>
+
+    <!-- الهيدر -->
+    <header class="border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-md sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 py-3.5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-orange-500 flex items-center justify-center shadow-lg shadow-orange-500/20">
+                    <svg class="w-7 h-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/>
+                        <path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5V14l-3-3 4-3 2 3h2"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="text-xl font-black tracking-tight text-white block leading-none">خدها زق</span>
+                    <span class="text-[11px] text-orange-400 font-semibold">Khodhazoq App</span>
+                </div>
+            </div>
+            <button onclick="smartDownload()" class="bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm px-4 py-2 rounded-xl transition shadow-md shadow-orange-500/20">
+                حمل التطبيق
+            </button>
+        </div>
+    </header>
+
+    <!-- القسم الرئيسي -->
+    <section class="hero-gradient relative overflow-hidden py-14 md:py-20 px-4">
+        <div class="max-w-5xl mx-auto text-center">
+            <div class="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 text-orange-400 px-4 py-1.5 rounded-full text-xs font-bold mb-6">
+                <span>⚡ رفيقك على الطريق في أي وقت</span>
+            </div>
+            
+            <h1 class="text-3xl sm:text-5xl font-black leading-tight mb-5">
+                عطلت في الطريق؟ <br>
+                <span class="text-orange-500">متشيلش هم.. خدها زق لأقرب صنايعي!</span>
+            </h1>
+            
+            <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
+                أول تطبيق مصري بيجمعلك كل ورش وصنايعية تصليح العجل في جيبك. اعرف أقرب ورشة ليك، مواعيد شغلها، وافتح اللوكيشن على الخريطة بضغطة زرار.
+            </p>
+
+            <!-- أزرار التحميل وتسجيل الورشة -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-lg mx-auto">
+                <button id="downloadBtn" onclick="smartDownload()" class="w-full sm:w-auto flex-1 bg-orange-500 hover:bg-orange-600 text-white font-black text-lg py-4 px-8 rounded-2xl orange-glow transition transform active:scale-95 flex items-center justify-center gap-3">
+                    <svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4"/>
+                    </svg>
+                    <span id="btnText">تحميل التطبيق الآن (APK)</span>
+                </button>
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_placeholder/viewform" target="_blank" id="formLink" class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-bold text-base py-4 px-6 rounded-2xl transition flex items-center justify-center gap-2">
+                    <span>🔧 ضيف ورشة أو صنايعي</span>
+                </a>
+            </div>
+            <p class="text-xs text-slate-400 mt-4">نسخة أندرويد مباشرة ومجانية بالكامل • خفيفة وسريعة</p>
+        </div>
+    </section>
+
+    <!-- مميزات التطبيق -->
+    <section class="py-14 px-4 max-w-6xl mx-auto">
+        <h2 class="text-2xl font-black text-center mb-10">ليه لازم يكون <span class="text-orange-500">خدها زق</span> على تليفونك؟</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-slate-900/90 border border-slate-800 p-6 rounded-2xl">
+                <div class="w-12 h-12 rounded-xl bg-orange-500/10 text-orange-500 flex items-center justify-center text-2xl mb-4">📍</div>
+                <h3 class="text-lg font-bold mb-2">أقرب ورشة لمكانك</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">بضغطة واحدة بتشوف قائمة الورش المتاحة وتفتح مكانها على خرائط جوجل عشان متلفش كتير.</p>
+            </div>
+            <div class="bg-slate-900/90 border border-slate-800 p-6 rounded-2xl">
+                <div class="w-12 h-12 rounded-xl bg-orange-500/10 text-orange-500 flex items-center justify-center text-2xl mb-4">🕒</div>
+                <h3 class="text-lg font-bold mb-2">مواعيد العمل وأرقام التليفون</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">اعرف الورشة فاتحة ولا قافلة وتواصل مع الصنايعي قبل ما تتحرك.</p>
+            </div>
+            <div class="bg-slate-900/90 border border-slate-800 p-6 rounded-2xl">
+                <div class="w-12 h-12 rounded-xl bg-orange-500/10 text-orange-500 flex items-center justify-center text-2xl mb-4">🤝</div>
+                <h3 class="text-lg font-bold mb-2">مجتمع بيساعد بعضه</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">أي حد يقدر يضيف ورشة أمينة وشاطرة من خلال الفورم عشان الكل يستفيد.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer class="border-t border-slate-900 py-8 px-4 text-center text-slate-500 text-sm">
+        <p class="font-bold text-slate-400 mb-1">تطبيق خدها زق (Khodhazoq)</p>
+        <p class="text-xs">جميع الحقوق محفوظة © 2026</p>
+    </footer>
+
+    <!-- كود الفحص الذكي لملف الـ APK -->
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        cairo: ['Cairo', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            orange: '#EA580C',
-                            orangeLight: '#F97316',
-                            orangeDark: '#B93815',
-                            terracotta: '#A93215',
-                            dark: '#0F172A',
-                            card: '#1E293B',
-                        }
-                    }
+        async function smartDownload() {
+            const apkFile = 'khodhazoq.apk';
+            const btnText = document.getElementById('btnText');
+            const originalText = btnText.innerText;
+            
+            btnText.innerText = 'جاري الفحص...';
+
+            try {
+                // بيبعت طلب سريع يتأكد هل ملف khodhazoq.apk مرفوع ولا لسه
+                const response = await fetch(apkFile, { method: 'HEAD', cache: 'no-store' });
+                
+                if (response.ok) {
+                    // لو الملف موجود فعلاً، يبدأ تحميله فوراً
+                    btnText.innerText = 'جاري التحميل...';
+                    const link = document.createElement('a');
+                    link.href = apkFile;
+                    link.download = 'khodhazoq.apk';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    setTimeout(() => { btnText.innerText = originalText; }, 2000);
+                } else {
+                    // لو الملف لسه مرفعش (404)، يظهر رسالة "قريباً" بدون أخطاء
+                    btnText.innerText = originalText;
+                    document.getElementById('toastMsg').classList.remove('hidden');
                 }
+            } catch (error) {
+                btnText.innerText = originalText;
+                document.getElementById('toastMsg').classList.remove('hidden');
             }
         }
     </script>
-
-    <style>
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #0F172A;
-            color: #F8FAFC;
-            overflow-x: hidden;
-            -webkit-tap-highlight-color: transparent;
-        }
-        /* تأثير توهج برتقالي محمر متناسق مع ألوان اللوجو */
-        .orange-glow {
-            box-shadow: 0 0 35px -5px rgba(234, 88, 12, 0.5);
-        }
-        .orange-glow-sm {
-            box-shadow: 0 8px 20px -4px rgba(234, 88, 12, 0.4);
-        }
-        .logo-ring {
-            box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.45), 0 8px 20px -4px rgba(185, 56, 21, 0.6);
-        }
-        /* شريط تمرير أنيق */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0F172A;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #333155;
-            border-radius: 9999px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #FF5A00;
-        }
-        /* تثبيت المعاينات كصورة غير تفاعلية نهائياً */
-        .static-preview {
-            pointer-events: none !important;
-            user-select: none !important;
-            -webkit-user-select: none !important;
-        }
-    </style>
-
-    <!-- تعريف اللوجو المدمج الثابت (SVG) ليظهر مباشرة في كل عناصر الموقع بدون الحاجة لملف صورة خارجي -->
-    <script>
-        const KHODHAZOQ_SVG_RAW = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
-            <rect width="240" height="240" rx="44" fill="#A93215"/>
-            <ellipse cx="120" cy="204" rx="88" ry="6" fill="#7A200B"/>
-            <!-- شنطة الدليفري البرتقالية -->
-            <g transform="rotate(-14 166 105)">
-                <rect x="136" y="68" width="56" height="62" rx="8" fill="#FF5A00" stroke="#1E110B" stroke-width="5"/>
-                <path d="M136 86 H192" stroke="#1E110B" stroke-width="5"/>
-                <rect x="145" y="102" width="38" height="16" rx="4" fill="#3E190E"/>
-                <text x="164" y="113" font-family="Arial, sans-serif" font-weight="900" font-size="9.5" fill="#FFFFFF" text-anchor="middle">خدها زق</text>
-            </g>
-            <!-- جسم الطيار المرهق -->
-            <path d="M126 135 L112 192 M144 135 L164 190" stroke="#3E190E" stroke-width="14" stroke-linecap="round"/>
-            <rect x="98" y="187" width="24" height="11" rx="5" fill="#C85A17" stroke="#1E110B" stroke-width="4"/>
-            <rect x="155" y="184" width="24" height="11" rx="5" transform="rotate(-18 167 189)" fill="#C85A17" stroke="#1E110B" stroke-width="4"/>
-            <!-- التيشيرت البرتقالي -->
-            <path d="M100 94 Q126 88 150 112 L156 138 L122 140 Z" fill="#FF6B00" stroke="#1E110B" stroke-width="5" stroke-linejoin="round"/>
-            <!-- الوجه والعرق -->
-            <circle cx="105" cy="76" r="20" fill="#F2B89B" stroke="#1E110B" stroke-width="5"/>
-            <path d="M95 72 Q99 75 103 72 M108 72 Q112 75 116 72" stroke="#1E110B" stroke-width="3" fill="none" stroke-linecap="round"/>
-            <ellipse cx="104" cy="85" rx="6" ry="4.5" fill="#1E110B"/>
-            <path d="M103 87 Q105 95 110 92 Q112 87 107 86 Z" fill="#EF4444" stroke="#1E110B" stroke-width="2"/>
-            <!-- نقط العرق -->
-            <path d="M74 64 Q67 70 72 74 Q77 72 74 64 Z" fill="#38BDF8" stroke="#1E110B" stroke-width="2.5"/>
-            <path d="M78 82 Q71 88 76 92 Q81 90 78 82 Z" fill="#38BDF8" stroke="#1E110B" stroke-width="2.5"/>
-            <!-- الخوذة -->
-            <path d="M82 62 C82 40 128 40 132 62 Z" fill="#FF6B00" stroke="#1E110B" stroke-width="5" stroke-linejoin="round"/>
-            <path d="M94 50 L102 56 M110 49 L116 56" stroke="#1E110B" stroke-width="4" stroke-linecap="round"/>
-            <!-- الدراع على الجادون -->
-            <path d="M112 102 L78 112" stroke="#FF6B00" stroke-width="13" stroke-linecap="round"/>
-            <path d="M132 106 L108 116" stroke="#FF6B00" stroke-width="13" stroke-linecap="round"/>
-            <!-- العجلة -->
-            <!-- الكاوتش الخلفي السليم -->
-            <circle cx="164" cy="166" r="32" fill="none" stroke="#261712" stroke-width="9"/>
-            <circle cx="164" cy="166" r="25" fill="none" stroke="#D97742" stroke-width="3"/>
-            <path d="M164 138 V194 M136 166 H192 M144 146 L184 186 M184 146 L144 186" stroke="#261712" stroke-width="2"/>
-            <!-- الكاوتش الأمامي النايم (الفردة المفرقعة) -->
-            <path d="M40 194 C34 176 42 138 72 138 C102 138 110 176 104 194 C94 200 50 200 40 194 Z" fill="none" stroke="#261712" stroke-width="9" stroke-linejoin="round"/>
-            <circle cx="72" cy="167" r="23" fill="none" stroke="#D97742" stroke-width="3"/>
-            <path d="M72 142 V192 M48 167 H96 M55 150 L89 184 M89 150 L55 184" stroke="#261712" stroke-width="2"/>
-            <path d="M35 197 Q72 203 109 197" stroke="#261712" stroke-width="8" stroke-linecap="round"/>
-            <!-- كادر العجلة والجادون -->
-            <path d="M72 167 L90 116 L146 126 L118 166 L72 167 M146 126 L164 166 L118 166" fill="none" stroke="#B84A14" stroke-width="6.5" stroke-linejoin="round"/>
-            <path d="M68 112 H108" stroke="#1E110B" stroke-width="6" stroke-linecap="round"/>
-            <path d="M136 122 H158" stroke="#1E110B" stroke-width="7" stroke-linecap="round"/>
-        </svg>`;
-        window.BUILT_IN_LOGO_URI = "data:image/svg+xml;utf8," + encodeURIComponent(KHODHAZOQ_SVG_RAW);
-    </script>
-</head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-brand-orange selection:text-white">
-
-    <!-- إشعار علوي سريع للطيارين -->
-    <div class="bg-gradient-to-l from-brand-orangeDark via-brand-orange to-amber-500 text-white text-xs sm:text-sm py-2 px-4 text-center font-bold shadow-md">
-        <div class="max-w-5xl mx-auto flex items-center justify-center gap-2">
-            <i class="fa-solid fa-bolt animate-bounce"></i>
-            <span>مخصص للطيارين وأصحاب العجل في جميع المناطق — مجاني 100% وبدون إعلانات!</span>
-        </div>
-    </div>
-
-    <!-- 1. الهيدر الثابت (Sticky Mobile Header) -->
-    <header class="sticky top-0 z-40 backdrop-blur-md bg-slate-900/90 border-b border-slate-800/80 transition-all">
-        <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-            <!-- اللوجو الرسمي واسم التطبيق -->
-            <a href="#" class="flex items-center gap-3 group">
-                <div class="relative w-12 h-12 rounded-2xl overflow-hidden logo-ring shrink-0 group-hover:scale-105 transition-transform bg-[#A93215]">
-                    <img alt="لوجو تطبيق خدها زق" class="app-logo-img w-full h-full object-cover">
-                </div>
-                <div>
-                    <div class="flex items-center gap-2">
-                        <h1 class="text-lg sm:text-xl font-black tracking-tight text-white">خدها زق</h1>
-                        <span class="bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-[10px] font-bold px-2 py-0.5 rounded-full">
-                            v1.0.0
-                        </span>
-                    </div>
-                    <p class="text-[11px] text-slate-400 font-semibold">دليل ورش وصنايعية العجل</p>
-                </div>
-            </a>
-
-            <!-- أزرار الهيدر السريعة -->
-            <div class="flex items-center gap-2">
-                <button onclick="openShareModal()" class="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-colors" title="مشاركة التطبيق">
-                    <i class="fa-solid fa-share-nodes text-sm"></i>
-                </button>
-                <a href="#download-section" class="bg-brand-orange hover:bg-brand-orangeLight active:scale-95 text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-md orange-glow-sm transition-all flex items-center gap-1.5">
+</body>
+</html>
+y-2.5 rounded-xl shadow-md orange-glow-sm transition-all flex items-center gap-1.5">
                     <i class="fa-solid fa-download"></i>
                     <span>حمل الآن</span>
                 </a>
