@@ -173,7 +173,7 @@
                 <button onclick="openShareModal()" class="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-colors" title="مشاركة التطبيق">
                     <i class="fa-solid fa-share-nodes text-sm"></i>
                 </button>
-                <a href="https://raw.githubusercontent.com/kareemhishem7-cmd/khodhazoq/refs/heads/main/khodhazoq.apk" download="khodhazoq.apk" onclick="handleDownloadClick(event)" class="bg-brand-orange hover:bg-brand-orangeLight active:scale-95 text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-md orange-glow-sm transition-all flex items-center gap-1.5">
+                <a href="./khodhazoq.apk" download="khodhazoq.apk" onclick="handleDownloadClick(event)" class="relative z-30 bg-brand-orange hover:bg-brand-orangeLight active:scale-95 text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-md orange-glow-sm transition-all flex items-center gap-1.5 cursor-pointer">
                     <i class="fa-solid fa-download"></i>
                     <span>حمل الآن</span>
                 </a>
@@ -228,8 +228,8 @@
                     <!-- صندوق التحميل المباشر والأزرار -->
                     <div class="pt-3 space-y-3">
                         <!-- الزرار الرئيسي لتحميل APK -->
-                        <a id="apk-download-btn" href="https://raw.githubusercontent.com/kareemhishem7-cmd/khodhazoq/refs/heads/main/khodhazoq.apk" download="khodhazoq.apk" onclick="handleDownloadClick(event)"
-                           class="w-full sm:w-auto min-w-[290px] bg-gradient-to-l from-brand-orange to-amber-600 hover:from-brand-orangeLight hover:to-amber-500 active:scale-[0.98] text-white font-black text-lg py-4 px-6 rounded-2xl orange-glow transition-all flex items-center justify-between sm:justify-center gap-4 group">
+                        <a id="apk-download-btn" href="./khodhazoq.apk" download="khodhazoq.apk" onclick="handleDownloadClick(event)"
+                           class="relative z-30 w-full sm:w-auto min-w-[290px] bg-gradient-to-l from-brand-orange to-amber-600 hover:from-brand-orangeLight hover:to-amber-500 active:scale-[0.98] text-white font-black text-lg py-4 px-6 rounded-2xl orange-glow transition-all flex items-center justify-between sm:justify-center gap-4 group cursor-pointer">
                             <div class="flex items-center gap-3">
                                 <div class="w-11 h-11 rounded-xl bg-white/20 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
                                     <i class="fa-brands fa-android"></i>
@@ -241,6 +241,11 @@
                             </div>
                             <i class="fa-solid fa-cloud-arrow-down text-2xl animate-bounce"></i>
                         </a>
+
+                        <!-- رابط بديل احتياطي تحت الزرار في حالة تعليق متصفح الموبايل -->
+                        <div class="text-xs text-slate-400 pr-1">
+                            لو التحميل مبدأش تلقائياً، <a href="https://github.com/kareemhishem7-cmd/khodhazoq/raw/main/khodhazoq.apk" class="text-amber-400 underline font-bold hover:text-amber-300">اضغط هنا للتحميل المباشر البديل</a>.
+                        </div>
 
                         <!-- أزرار ثانوية: إضافة صنايعي عبر جوجل فورم + طريقة التثبيت -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
@@ -744,9 +749,17 @@
             );
             window.open("https://wa.me/?text=" + text, "_blank");
         }
-    </script>
 
-    <!-- كود إعلان Adsterra Social Bar -->
-    <script data-cfasync="false" src="https://bauval.org/14/d129545ec24607e8638713217c5ac82a"></script>
+        // تحميل إعلان Social Bar بعد فتح الصفحة بـ 2.5 ثانية لضمان عدم تغطية زرار تحميل الـ APK
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                var sbScript = document.createElement('script');
+                sbScript.type = 'text/javascript';
+                sbScript.setAttribute('data-cfasync', 'false');
+                sbScript.src = 'https://bauval.org/14/d129545ec24607e8638713217c5ac82a';
+                document.body.appendChild(sbScript);
+            }, 2500);
+        });
+    </script>
 </body>
 </html>
