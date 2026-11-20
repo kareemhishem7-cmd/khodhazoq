@@ -244,7 +244,7 @@
 
                         <!-- رابط بديل احتياطي تحت الزرار في حالة تعليق متصفح الموبايل -->
                         <div class="text-xs text-slate-400 pr-1">
-                            لو التحميل مبدأش تلقائياً، <a href="https://github.com/kareemhishem7-cmd/khodhazoq/raw/main/khodhazoq.apk" class="text-amber-400 underline font-bold hover:text-amber-300">اضغط هنا للتحميل المباشر البديل</a>.
+                            لو التحميل مبدأش تلقائياً، <a href="https://github.com/kareemhishem7-cmd/khodhazoq/raw/main/khodhazoq.apk" onclick="handleDownloadClick(event)" class="text-amber-400 underline font-bold hover:text-amber-300">اضغط هنا للتحميل المباشر البديل</a>.
                         </div>
 
                         <!-- أزرار ثانوية: إضافة صنايعي عبر جوجل فورم + طريقة التثبيت -->
@@ -265,11 +265,15 @@
                         </div>
                     </div>
 
-                    <!-- شريط ثقة وأمان + اسم الحزمة الرسمي -->
+                    <!-- شريط ثقة وأمان + اسم الحزمة الرسمي + عداد التحميلات -->
                     <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
                         <div class="flex items-center gap-1.5">
                             <i class="fa-solid fa-shield-halved text-emerald-400 text-sm"></i>
                             <span>آمن 100% ومفحوص</span>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-amber-400 font-bold">
+                            <i class="fa-solid fa-fire text-brand-orange text-sm"></i>
+                            <span>التحميلات: <strong id="download-count">...</strong></span>
                         </div>
                         <div class="flex items-center gap-1.5">
                             <i class="fa-solid fa-tag text-sky-400 text-sm"></i>
@@ -703,12 +707,45 @@
             favicon.href = window.BUILT_IN_LOGO_URI;
         }
 
+        // رابط عداد التحميلات على Firebase
+        const FIREBASE_DOWNLOADS_URL = 'https://khodhazoq-default-rtdb.europe-west1.firebasedatabase.app/downloads.json';
+
+        // جلب عدد التحميلات الحالي أول ما الصفحة تفتح
+        async function loadDownloadCount() {
+            const countEl = document.getElementById('download-count');
+            if (!countEl) return;
+            try {
+                const res = await fetch(FIREBASE_DOWNLOADS_URL);
+                const count = await res.json();
+                countEl.textContent = count || 0;
+            } catch (err) {
+                countEl.textContent = '0';
+            }
+        }
+        loadDownloadCount();
+
         function handleDownloadClick(event) {
             const toast = document.getElementById('download-toast');
             toast.classList.remove('hidden');
             setTimeout(() => {
                 toast.classList.add('hidden');
             }, 8000);
+
+            // زيادة العداد تلقائياً +1 على سيرفر Firebase
+            fetch(FIREBASE_DOWNLOADS_URL, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ '.sv': { 'increment': 1 } }),
+                keepalive: true
+            })
+            .then(res => res.json())
+            .then(newCount => {
+                const countEl = document.getElementById('download-count');
+                if (countEl && typeof newCount === 'number') {
+                    countEl.textContent = newCount;
+                }
+            })
+            .catch(err => console.error('Firebase counter error:', err));
         }
 
         function closeDownloadToast() {
